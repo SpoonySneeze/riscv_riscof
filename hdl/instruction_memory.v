@@ -24,6 +24,7 @@ module instruction_memory(
     input wire [31:0] read_address,
     output wire [31:0] instruction
     );
+<<<<<<< HEAD
     // Declare a 1K-word memory. This creates 1024 slots,
     reg [31:0] memory [0:1023];
     // Initialize the memory from a hex file at the start of simulation.
@@ -34,4 +35,16 @@ module instruction_memory(
     // The last 2 bits i.e the 0th and the 1st bit is for addressign the [1,2,3,4] bytes in the 32 bit instruction but it doesnt make sense as we featch the whole instructions at ones 
     //So, no need to take last 2 bits
     assign instruction = memory[read_address[11:2]];
+=======
+    // CHANGE 1: Size 16384
+    reg [31:0] memory [0:16383];
+
+    initial begin
+        // CHANGE 2: Filename "code.mem"
+        $readmemh("code.mem", memory);
+    end
+
+    // CHANGE 3: Index [15:2]
+    assign instruction = memory[read_address[15:2]];
+>>>>>>> f68f608 (Initial commit)
 endmodule

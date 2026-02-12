@@ -28,7 +28,11 @@ module PC(
     );
     reg [31:0] addr;
     always@(posedge clk)begin
+<<<<<<< HEAD
         if(reset) addr <= 32'b0;
+=======
+        if(reset) addr <= 32'h80000000;
+>>>>>>> f68f608 (Initial commit)
         else addr <= next_pc;
     end
     assign current_pc = addr;
